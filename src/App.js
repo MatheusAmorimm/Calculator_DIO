@@ -69,6 +69,19 @@ const handleDiv = () => {
 }
 }
 
+const handlePercent = () => {
+  if (firstNumber === "0") {
+    setFirstNumber(String(currentNumber));
+    setCurrentNumber('0')
+    setOperation("%");
+} else {
+  const mult = ( Number(firstNumber) / 100 ) * Number(currentNumber) ;
+  setCurrentNumber(String(mult));
+  setFirstNumber("0");
+  setOperation("%");
+}
+}
+
 
   const handleEqual = () => {
     if (firstNumber !== "0" && operation !== "" && currentNumber !== "0") {
@@ -90,6 +103,10 @@ const handleDiv = () => {
             handleDiv();
             break;
 
+        case "%":
+            handlePercent();
+            break;
+
         default:
             break;
       }
@@ -105,7 +122,7 @@ const handleDiv = () => {
           <Button label="*" onClick={handleMult} />
           <Button label="/" onClick={handleDiv} />
           <Button label="C" onClick={handleClear} />
-          <Button label="X" />
+          <Button label="%" onClick={handlePercent}/>
         </Row>
 
         <Row>
